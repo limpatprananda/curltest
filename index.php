@@ -1,5 +1,5 @@
 <?php         
-        $base_url = "http://localhost/tools/curltest/";
+        $base_url = "http://localhost/curltest/";
         $url = $base_url . "data.php?firstName=Limpat&lastName=Prananda";        
         $return = "default value";
                 
@@ -18,31 +18,20 @@
         /*post data field*/
         
         /*post data json*/        
-//        $data = array(
-//            "firstName" => "Wimpi",
-//            "lastName" => "Agung Nugraha"
-//        );
-//        $data_string = json_encode($data);
-//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                                   
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
-//            'Content-Type: application/json',                                                                                
-//            'Content-Length: ' . strlen($data_string))                                                                       
-//        ); 
+        $data = array(
+            "firstName" => "Wimpi",
+            "lastName" => "Agung Nugraha"
+        );
+        $data_string = json_encode($data);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                                   
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+            'Content-Type: application/json',                                                                                
+            'Content-Length: ' . strlen($data_string))                                                                       
+        ); 
         /*post data json*/
         
-        $return_value = curl_exec($ch);
-        if(!$return_value){
-            echo curl_error($ch);
-            exit();
-        }
-        else{
-            $status_info = curl_getinfo($ch);
-        }
-                        	
+        $return_value = curl_exec($ch);      	
         curl_close ($ch);
-	echo json_encode(array(
-            'return_value' => $return_value,
-            'status_info' => $status_info
-        ));
+	echo $return_value;
 ?>
